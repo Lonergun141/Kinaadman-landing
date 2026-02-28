@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
+import { Crawler } from '@/components/Crawler';
 import { ValueProposition } from '@/components/ValueProposition';
 import { Features } from '@/components/Features';
 import { Comparison } from '@/components/Comparison';
@@ -12,6 +13,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <Crawler />
         <ValueProposition />
         <Features />
         <Comparison />

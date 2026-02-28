@@ -2,135 +2,85 @@
 
 import Link from 'next/link'
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
+import { ScrollReveal } from './ScrollReveal'
 
 export function Footer() {
     return (
-        <footer className="bg-background border-t border-border">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
+        <footer className="bg-[#f8fafc] border-t border-[#e2e8f0] overflow-hidden">
+            {/* Top link row */}
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
+                <div className="flex flex-col md:flex-row justify-between gap-10">
                     {/* Brand */}
-                    <div className="md:col-span-2">
-                        <div className="mb-4">
-                            <span className="font-serif text-2xl font-bold text-foreground">Kinaadman</span>
+                    <ScrollReveal variant="left">
+                        <div className="max-w-xs">
+                            <span className="font-serif text-xl font-bold text-[#0f2a44]">Kinaadman</span>
+                            <p className="text-[#64748b] text-sm leading-relaxed mt-3">
+                                Secure, institutional research management platform exclusively designed for colleges and universities.
+                            </p>
+                            <div className="flex gap-3 mt-5">
+                                {[
+                                    { Icon: Twitter, href: '#' },
+                                    { Icon: Github, href: '#' },
+                                    { Icon: Linkedin, href: '#' },
+                                    { Icon: Mail, href: '#' },
+                                ].map(({ Icon, href }, i) => (
+                                    <Link key={i} href={href} className="w-8 h-8 rounded-full bg-[#0f2a44]/5 flex items-center justify-center text-[#475569] hover:bg-[#0f2a44] hover:text-white transition-all">
+                                        <Icon size={14} />
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                            Secure, institutional research management platform exclusively designed for colleges and universities.
-                        </p>
-                        <div className="flex gap-4">
-                            <Link href="#" className="text-foreground hover:text-secondary transition-colors">
-                                <Twitter size={18} />
-                            </Link>
-                            <Link href="#" className="text-foreground hover:text-secondary transition-colors">
-                                <Github size={18} />
-                            </Link>
-                            <Link href="#" className="text-foreground hover:text-secondary transition-colors">
-                                <Linkedin size={18} />
-                            </Link>
-                            <Link href="#" className="text-foreground hover:text-secondary transition-colors">
-                                <Mail size={18} />
-                            </Link>
+                    </ScrollReveal>
+
+                    {/* Links */}
+                    <ScrollReveal variant="right" delay={200}>
+                        <div className="flex flex-wrap gap-12">
+                            {[
+                                { heading: 'Product', links: ['Features', 'Pricing', 'Security', 'API Docs'] },
+                                { heading: 'Company', links: ['About', 'Blog', 'Careers', 'Contact'] },
+                                { heading: 'Legal', links: ['Privacy', 'Terms', 'GDPR', 'Accessibility'] },
+                            ].map((col) => (
+                                <div key={col.heading}>
+                                    <h4 className="font-semibold text-sm text-[#0f2a44] mb-4 tracking-wide">{col.heading}</h4>
+                                    <ul className="space-y-2.5">
+                                        {col.links.map((link) => (
+                                            <li key={link}>
+                                                <Link href="#" className="text-sm text-[#64748b] hover:text-[#c9a227] transition-colors">
+                                                    {link}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
                         </div>
-                    </div>
-
-                    {/* Product */}
-                    <div>
-                        <h4 className="font-medium font-serif text-foreground mb-6">Product</h4>
-                        <ul className="space-y-3 text-sm">
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Features
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Pricing
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Security
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    API Docs
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Company */}
-                    <div>
-                        <h4 className="font-medium font-serif text-foreground mb-6">Company</h4>
-                        <ul className="space-y-3 text-sm">
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    About
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Blog
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Careers
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Contact
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Legal */}
-                    <div>
-                        <h4 className="font-medium font-serif text-foreground mb-6">Legal</h4>
-                        <ul className="space-y-3 text-sm">
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Privacy
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Terms
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    GDPR
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="text-muted-foreground hover:text-secondary transition-colors">
-                                    Accessibility
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                    </ScrollReveal>
                 </div>
+            </div>
 
-                {/* Bottom */}
-                <div className="border-t border-border pt-12">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                        <p className="text-muted-foreground text-sm">
-                            © {new Date().getFullYear()} Kinaadman. All rights reserved.
-                        </p>
-                        <div className="flex items-center gap-6">
-                            <Link href="#" className="text-muted-foreground hover:text-secondary text-sm transition-colors">
-                                Status
+            {/* Oversized wordmark */}
+            <div className="w-full overflow-hidden border-t border-[#e2e8f0] select-none">
+                <div className="px-4 pt-6 pb-0">
+                    <span
+                        className="block font-serif font-bold text-[#0f2a44]/[0.05] leading-none whitespace-nowrap tracking-tight"
+                        style={{ fontSize: 'clamp(5rem, 14vw, 14rem)' }}
+                        aria-hidden="true"
+                    >
+                        Kinaadman
+                    </span>
+                </div>
+            </div>
+
+            {/* Bottom bar */}
+            <div className="border-t border-[#e2e8f0] bg-white">
+                <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#94a3b8]">
+                    <span>© {new Date().getFullYear()} Kinaadman. All rights reserved.</span>
+                    <div className="flex items-center gap-5">
+                        {['Status', 'Changelog', 'Support'].map((item) => (
+                            <Link key={item} href="#" className="hover:text-[#c9a227] transition-colors">
+                                {item}
                             </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-secondary text-sm transition-colors">
-                                Changelog
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-secondary text-sm transition-colors">
-                                Support
-                            </Link>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>

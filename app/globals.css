@@ -29,6 +29,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -46,16 +50,114 @@
   }
 }
 
-@keyframes aurora {
-  0% {
-    background-position: 50% 50%, 50% 50%;
+/* ─── Hero entrance animations ─────────────────────────────────────────────── */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
   }
 
-  50% {
-    background-position: 110% 50%, 70% 60%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-up {
+  opacity: 0;
+  animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Scroll-reveal: base state ─────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variants */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delay helpers */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+.delay-600 {
+  transition-delay: 600ms;
+}
+
+/* ─── Marquee / Crawler ──────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
   }
 
-  100% {
-    background-position: 50% 50%, 50% 50%;
+  to {
+    transform: translateX(-50%);
   }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
