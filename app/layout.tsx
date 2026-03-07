@@ -18,6 +18,9 @@ const merriweather = Merriweather({
 export const metadata: Metadata = {
   title: 'Kinaadman | Thesis & Capstone Repository',
   description: 'The Centralized Digital Repository for Academic Research',
+  icons: {
+    icon: '/icon-light.png',
+  },
 };
 
 export default function RootLayout({

@@ -38,77 +38,117 @@ const features = [
 
 export function Features() {
     return (
-        <section id="features" className="py-32 bg-[#f8fafc] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                {/* Header */}
-                <ScrollReveal variant="up" className="text-center mb-24">
-                    <span className="inline-block text-xs font-bold tracking-widest uppercase text-[#c9a227] mb-4">
+        <section id="features" className="relative w-full bg-[#0f2a44]">
+            {/* Introductory Header section */}
+            <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 py-24 bg-[#f8fafc] sticky top-0 z-0">
+                <ScrollReveal variant="up" className="max-w-4xl mx-auto">
+                    <span className="inline-block text-sm font-bold tracking-[0.2em] uppercase text-[#c9a227] mb-6">
                         Core Capabilities
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0f2a44] mb-6">
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-[#0f2a44] mb-8 leading-tight">
                         Kinaadman goes deeper.
                     </h2>
-                    <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
-                        Purpose-built for academia. Not just another repository — a complete research management system.
+                    <p className="text-[#475569] text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
+                        Purpose-built for academia. Not just another digital repository — a complete workflow and research management system.
                     </p>
                 </ScrollReveal>
+            </div>
 
-                {/* Sticky feature cards */}
-                <div className="relative space-y-8 pb-24">
-                    {features.map((feature, index) => {
-                        const Icon = feature.icon;
-                        const isEven = index % 2 === 0;
-                        return (
-                            <ScrollReveal
-                                key={index}
-                                variant={isEven ? 'left' : 'right'}
-                                delay={0}
+            {/* Full-screen sticky feature cards */}
+            <div className="relative z-10 w-full">
+                {features.map((feature, index) => {
+                    const Icon = feature.icon;
+                    const isEven = index % 2 === 0;
+
+                    // Explicitly define order classes to ensure Tailwind compiles them correctly
+                    const textOrderClass = isEven ? 'lg:order-1' : 'lg:order-2';
+                    const visualOrderClass = isEven ? 'lg:order-2' : 'lg:order-1';
+
+                    return (
+                        <div
+                            key={index}
+                            className="relative lg:sticky top-0 min-h-[100svh] lg:h-[100svh] w-full flex flex-col lg:flex-row overflow-hidden shadow-[0_-15px_50px_rgba(0,0,0,0.15)]"
+                            style={{ zIndex: 10 + index }}
+                        >
+                            {/* Text Content Side */}
+                            <div className={`flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-20 xl:p-24 ${isEven ? 'bg-white' : 'bg-[#f8fafc]'} ${textOrderClass} relative`}>
+                                <ScrollReveal variant={isEven ? 'right' : 'left'} className="max-w-xl mx-auto lg:mx-0">
+                                    <div className="flex items-center gap-4 mb-8">
+                                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: `${feature.accentColor}15` }}>
+                                            <Icon size={32} style={{ color: feature.accentColor }} />
+                                        </div>
+                                        <span className="text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full border" style={{ borderColor: `${feature.accentColor}40`, color: feature.accentColor }}>
+                                            {feature.tag}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#0f2a44] mb-6 leading-[1.1]">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-xl md:text-2xl font-medium text-[#c9a227] mb-8 leading-relaxed">
+                                        {feature.shortDescription}
+                                    </p>
+                                    <p className="text-lg md:text-xl text-[#64748b] leading-loose">
+                                        {feature.fullDescription}
+                                    </p>
+                                </ScrollReveal>
+                            </div>
+
+                            {/* Visual Graphic Side */}
+                            <div className={`flex-1 relative flex items-center justify-center overflow-hidden ${visualOrderClass}`}
+                                style={{
+                                    background: isEven
+                                        ? `linear-gradient(135deg, #0f2a44 0%, #1a4066 100%)`
+                                        : `linear-gradient(135deg, #c9a227 0%, #d4b03a 100%)`
+                                }}
                             >
-                                <div
-                                    className="sticky w-full max-w-5xl mx-auto bg-white rounded-3xl border border-[#e2e8f0] overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row"
-                                    style={{ top: `calc(6rem + ${index * 1.5}rem)` }}
-                                >
-                                    {/* Visual side */}
-                                    <div
-                                        className={`w-full md:w-5/12 aspect-video md:aspect-auto shrink-0 flex items-center justify-center relative overflow-hidden ${isEven ? 'md:order-first' : 'md:order-last'}`}
-                                        style={{
-                                            background: isEven
-                                                ? `linear-gradient(135deg, #0f2a44 0%, #1e3a5f 100%)`
-                                                : `linear-gradient(135deg, #c9a227 0%, #d4b03a 100%)`,
-                                        }}
-                                    >
-                                        <div className="absolute inset-0 opacity-20">
-                                            <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full blur-2xl" style={{ background: isEven ? '#c9a227' : '#0f2a44' }} />
-                                            <div className="absolute bottom-1/4 right-1/4 w-24 h-24 rounded-full blur-2xl" style={{ background: isEven ? '#c9a22780' : '#0f2a4480' }} />
-                                        </div>
-
-                                        <div className="relative z-10 flex flex-col items-center gap-4 p-8 text-center">
-                                            <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg" style={{ background: isEven ? 'rgba(201,162,39,0.2)' : 'rgba(15,42,68,0.2)' }}>
-                                                <Icon size={32} className={isEven ? 'text-[#c9a227]' : 'text-[#0f2a44]'} />
-                                            </div>
-                                            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: isEven ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)', color: 'white' }}>
-                                                {feature.tag}
-                                            </span>
-                                            <div className="w-full max-w-[180px] space-y-2 mt-2">
-                                                {[70, 45, 55, 30].map((w, i) => (
-                                                    <div key={i} className="h-2 rounded-full" style={{ width: `${w}%`, background: 'rgba(255,255,255,0.3)' }} />
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Text side */}
-                                    <div className="p-10 md:p-14 flex-1 flex flex-col justify-center">
-                                        <span className="inline-block text-xs font-bold tracking-widest uppercase text-[#c9a227] mb-4">{feature.tag}</span>
-                                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-[#0f2a44] mb-4 leading-tight">{feature.title}</h3>
-                                        <p className="text-base font-semibold text-[#0f2a44]/70 mb-5">{feature.shortDescription}</p>
-                                        <p className="text-[#64748b] leading-relaxed text-sm">{feature.fullDescription}</p>
-                                    </div>
+                                {/* Immersive abstract background decorations */}
+                                <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none">
+                                    <div className="absolute top-1/4 -left-1/4 w-96 h-96 rounded-full blur-[100px]" style={{ background: isEven ? '#c9a227' : '#0f2a44' }} />
+                                    <div className="absolute -bottom-1/4 right-1/4 w-[30rem] h-[30rem] rounded-full blur-[120px]" style={{ background: isEven ? '#ffffff' : '#0f2a44' }} />
                                 </div>
-                            </ScrollReveal>
-                        );
-                    })}
-                </div>
+
+                                {/* Abstract Glassmorphism UI Component */}
+                                <ScrollReveal variant="scale" delay={200} className="relative z-10 w-full max-w-md px-6">
+                                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 lg:p-10 shadow-2xl transform transition-transform hover:-translate-y-2 duration-500">
+                                        <div className="flex items-center justify-between mb-8">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center shadow-inner">
+                                                    <Icon size={28} className="text-white" />
+                                                </div>
+                                                <div>
+                                                    <div className="h-4 w-32 bg-white/40 rounded-md mb-2" />
+                                                    <div className="h-2.5 w-20 bg-white/20 rounded-md" />
+                                                </div>
+                                            </div>
+                                            <div className="flex gap-1.5">
+                                                <div className="w-3 h-3 rounded-full bg-[#fecaca] opacity-80" />
+                                                <div className="w-3 h-3 rounded-full bg-[#fef08a] opacity-80" />
+                                                <div className="w-3 h-3 rounded-full bg-[#bbf7d0] opacity-80" />
+                                            </div>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <div className="h-3 w-full bg-white/20 rounded-md" />
+                                            <div className="h-3 w-11/12 bg-white/20 rounded-md" />
+                                            <div className="h-3 w-4/5 bg-white/20 rounded-md" />
+                                            <div className="h-3 w-9/12 bg-white/20 rounded-md mb-6" />
+                                            <div className="h-3 w-full bg-white/20 rounded-md mt-8" />
+                                            <div className="h-3 w-5/6 bg-white/20 rounded-md" />
+                                        </div>
+                                        <div className="mt-10 pt-6 border-t border-white/10 flex justify-between items-center">
+                                            <div className="h-10 w-32 bg-white/20 rounded-lg backdrop-blur-md" />
+                                            <div className="flex -space-x-3">
+                                                <div className="h-10 w-10 rounded-full border-2 border-white/20 bg-white/30" />
+                                                <div className="h-10 w-10 rounded-full border-2 border-white/20 bg-white/20" />
+                                                <div className="h-10 w-10 rounded-full border-2 border-white/20 bg-white/10" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </ScrollReveal>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </section>
     );

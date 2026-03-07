@@ -1,69 +1,61 @@
 'use client'
 
-import Link from 'next/link'
-import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
+import Image from 'next/image'
 import { ScrollReveal } from './ScrollReveal'
 
 export function Footer() {
     return (
-        <footer className="bg-[#f8fafc] border-t border-[#e2e8f0] overflow-hidden">
-            {/* Top link row */}
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
-                <div className="flex flex-col md:flex-row justify-between gap-10">
+        <footer className="bg-[#f8fafc] border-t border-[#e2e8f0] overflow-hidden flex flex-col mt-auto">
+            {/* Expanded Footer Content */}
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-12 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
                     {/* Brand */}
-                    <ScrollReveal variant="left">
-                        <div className="max-w-xs">
-                            <span className="font-serif text-xl font-bold text-[#0f2a44]">Kinaadman</span>
-                            <p className="text-[#64748b] text-sm leading-relaxed mt-3">
-                                Secure, institutional research management platform exclusively designed for colleges and universities.
-                            </p>
-                            <div className="flex gap-3 mt-5">
-                                {[
-                                    { Icon: Twitter, href: '#' },
-                                    { Icon: Github, href: '#' },
-                                    { Icon: Linkedin, href: '#' },
-                                    { Icon: Mail, href: '#' },
-                                ].map(({ Icon, href }, i) => (
-                                    <Link key={i} href={href} className="w-8 h-8 rounded-full bg-[#0f2a44]/5 flex items-center justify-center text-[#475569] hover:bg-[#0f2a44] hover:text-white transition-all">
-                                        <Icon size={14} />
-                                    </Link>
-                                ))}
+                    <div className="col-span-1 md:col-span-2">
+                        <ScrollReveal variant="up">
+                            <div className="flex items-center gap-4 mb-4">
+                                <Image src="/icon-light.png" alt="Kinaadman Logo" width={44} height={44} className="object-contain" />
+                                <h2 className="font-serif text-3xl font-bold text-[#0f2a44] leading-none mt-1">Kinaadman</h2>
                             </div>
-                        </div>
-                    </ScrollReveal>
+                            <p className="text-[#64748b] text-sm tracking-wide font-light max-w-sm leading-relaxed mb-6">
+                                The centralized digital repository for academic research. Where no research gets lost. Built securely with multi-tenant architecture for universities and institutions.
+                            </p>
+                        </ScrollReveal>
+                    </div>
 
-                    {/* Links */}
-                    <ScrollReveal variant="right" delay={200}>
-                        <div className="flex flex-wrap gap-12">
-                            {[
-                                { heading: 'Product', links: ['Features', 'Pricing', 'Security', 'API Docs'] },
-                                { heading: 'Company', links: ['About', 'Blog', 'Careers', 'Contact'] },
-                                { heading: 'Legal', links: ['Privacy', 'Terms', 'GDPR', 'Accessibility'] },
-                            ].map((col) => (
-                                <div key={col.heading}>
-                                    <h4 className="font-semibold text-sm text-[#0f2a44] mb-4 tracking-wide">{col.heading}</h4>
-                                    <ul className="space-y-2.5">
-                                        {col.links.map((link) => (
-                                            <li key={link}>
-                                                <Link href="#" className="text-sm text-[#64748b] hover:text-[#c9a227] transition-colors">
-                                                    {link}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    </ScrollReveal>
+                    {/* Capabilities */}
+                    <div className="col-span-1">
+                        <ScrollReveal variant="up" delay={100}>
+                            <h3 className="font-bold text-[#0f2a44] uppercase tracking-wider text-xs mb-4">Capabilities</h3>
+                            <ul className="space-y-3">
+                                <li><a href="#features" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Multi-Tenant Architecture</a></li>
+                                <li><a href="#features" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Advanced Search</a></li>
+                                <li><a href="#features" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Approval Workflows</a></li>
+                                <li><a href="#features" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Secure Preservation</a></li>
+                            </ul>
+                        </ScrollReveal>
+                    </div>
+
+                    {/* Resources */}
+                    <div className="col-span-1">
+                        <ScrollReveal variant="up" delay={200}>
+                            <h3 className="font-bold text-[#0f2a44] uppercase tracking-wider text-xs mb-4">Resources</h3>
+                            <ul className="space-y-3">
+                                <li><a href="#" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Documentation</a></li>
+                                <li><a href="#" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">API Reference</a></li>
+                                <li><a href="mailto:contact@kinaadman.app" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Contact Support</a></li>
+                                <li><a href="#" className="text-[#64748b] hover:text-[#c9a227] text-sm transition-colors">Terms of Service</a></li>
+                            </ul>
+                        </ScrollReveal>
+                    </div>
                 </div>
             </div>
 
             {/* Oversized wordmark */}
-            <div className="w-full overflow-hidden border-t border-[#e2e8f0] select-none">
-                <div className="px-4 pt-6 pb-0">
+            <div className="w-full overflow-hidden select-none flex justify-center">
+                <div className="px-4 pb-2">
                     <span
-                        className="block font-serif font-bold text-[#0f2a44]/[0.05] leading-none whitespace-nowrap tracking-tight"
-                        style={{ fontSize: 'clamp(5rem, 14vw, 14rem)' }}
+                        className="block font-serif font-bold text-[#0f2a44]/[0.04] leading-none whitespace-nowrap tracking-tighter"
+                        style={{ fontSize: 'clamp(5rem, 18vw, 18rem)' }}
                         aria-hidden="true"
                     >
                         Kinaadman
@@ -72,16 +64,9 @@ export function Footer() {
             </div>
 
             {/* Bottom bar */}
-            <div className="border-t border-[#e2e8f0] bg-white">
-                <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#94a3b8]">
+            <div className="bg-white border-t border-[#e2e8f0]">
+                <div className="max-w-7xl mx-auto px-6 py-6 flex justify-center text-[11px] uppercase tracking-wider text-[#94a3b8]">
                     <span>© {new Date().getFullYear()} Kinaadman. All rights reserved.</span>
-                    <div className="flex items-center gap-5">
-                        {['Status', 'Changelog', 'Support'].map((item) => (
-                            <Link key={item} href="#" className="hover:text-[#c9a227] transition-colors">
-                                {item}
-                            </Link>
-                        ))}
-                    </div>
                 </div>
             </div>
         </footer>
